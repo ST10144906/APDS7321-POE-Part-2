@@ -3,27 +3,19 @@ const express = require('express');
 const Transaction = require('../models/Transaction'); // The Transaction model
 const router = express.Router();
 
-// Get pending transactions
-router.get('/pending', async (req, res) => {
+// POST /api/transactions to create a new transaction
+router.post('/', async (req, res) => {
   try {
-    const transactions = await Transaction.find({ verified: false });
-    res.json(transactions);
-  } catch (err) {
-    res.status(500).json({ msg: 'Error fetching transactions' });
-  }
-});
+    // Create a new transaction with the data from the request body
+    const transaction = new Transaction(req.body);
 
-// Submit verified transactions to SWIFT
-router.post('/submit', async (req, res) => {
-  try {
-    const { transactions } = req.body;
-    await Transaction.updateMany(
-      { _id: { $in: transactions.map(txn => txn._id) } },
-      { $set: { submittedToSwift: true } }
-    );
-    res.json({ msg: 'Transactions submitted successfully' });
+    // Save the transaction to the database
+    await transaction.save();
+
+    // Respond with a success message
+    res.status(201).json({ msg: 'Transaction created successfully!', transaction });
   } catch (err) {
-    res.status(500).json({ msg: 'Error submitting transactions' });
+    res.status(400).json({ msg: 'Error creating transaction', error: err.message });
   }
 });
 
