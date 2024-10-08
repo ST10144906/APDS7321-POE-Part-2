@@ -23,10 +23,10 @@ router.post('/register', async (req, res) => {
     return res.status(400).json({ msg: 'ID number must be at least 13 digits long and contain only numbers' });
   }
 
-// Validate account number format
-if (!accountNumberRegex.test(accountNumber)) {
-  return res.status(400).json({ msg: 'Account number must be exactly 10 digits long and contain only numbers' });
-  }
+  // Validate account number format
+  if (!accountNumberRegex.test(accountNumber)) {
+    return res.status(400).json({ msg: 'Account number must be exactly 10 digits long and contain only numbers' });
+    }
 
   // Validate password complexity
   if (!passwordRegex.test(password)) {

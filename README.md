@@ -78,3 +78,10 @@ To set up the frontend of the application, follow these steps:
 
    The frontend application should now be running on [http://localhost:3000](http://localhost:3000).
 
+
+## Note: install the following dependecies for protecting against atacks
+
+```bash 
+npm install express mongoose cors dotenv helmet express-rate-limit express-session xss-clean express-brute morgan bcryptjs
+```
+
