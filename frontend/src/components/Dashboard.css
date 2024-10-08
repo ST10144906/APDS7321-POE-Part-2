@@ -56,3 +56,43 @@
 .dashboard-button:hover {
   background-color: #0056b3; 
 }
+
+.transaction-area {
+  background-color: #f8f9fa; /* Light background for the transaction area */
+  border-radius: 8px;
+  padding: 20px;
+  max-height: 400px; /* Set a maximum height for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Space above the transaction area */
+}
+
+.transaction-list {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack transactions vertically */
+  gap: 15px; /* Space between transactions */
+  align-items: center; /* Center items horizontally */
+}
+
+.transaction-card {
+  background-color: #e0e0e0; /* Use the same background as cards */
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%; /* Full width of the container */
+  max-width: 500px; /* Limit the width of the transaction card */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.transaction-card:hover {
+  transform: translateY(-5px);
+}
+
+.transaction-label {
+  font-weight: bold; /* Bold labels for clarity */
+  color: #333; /* Ensure labels have a clear color */
+}
+
+.transaction-value {
+  margin-bottom: 10px; /* Space between each transaction value */
+}
