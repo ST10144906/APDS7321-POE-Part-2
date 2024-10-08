@@ -2,10 +2,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Auth.css'; // Ensure you create a CSS file for styling
+import './Auth.css'; // Ensure you have a CSS file for styling
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    idNumber: '',
+    accountNumber: ''
+  });
+  
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,6 +24,10 @@ const Register = () => {
     } catch (err) {
       alert('Error: ' + err.response.data.msg);
     }
+  };
+
+  const goBackToHome = () => {
+    navigate('/'); // Navigate to home page
   };
 
   return (
@@ -53,12 +64,36 @@ const Register = () => {
             required
           />
         </div>
+        <div className="form-group">
+          <label>ID Number:</label>
+          <input
+            type="text"
+            placeholder="ID Number"
+            value={formData.idNumber}
+            onChange={e => setFormData({ ...formData, idNumber: e.target.value })}
+            required
+            minLength={13}
+            maxLength={13}
+          />
+        </div>
+        <div className="form-group">
+          <label>Account Number:</label>
+          <input
+            type="text"
+            placeholder="Account Number"
+            value={formData.accountNumber}
+            onChange={e => setFormData({ ...formData, accountNumber: e.target.value })}
+            required
+          />
+        </div>
         <button type="submit">Register</button>
       </form>
       <p>
         Already have an account?{' '}
         <button onClick={() => navigate('/login')}>Login here</button>
       </p>
+      
+      <button className="back-button" onClick={goBackToHome}>Back to Home</button>
     </div>
   );
 };

@@ -7,10 +7,15 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
 
 // REGISTER a new user
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, idNumber, accountNumber } = req.body;
 
   if (!emailRegex.test(email)) {
     return res.status(400).json({ msg: 'Invalid email format' });
+  }
+
+  // Check for valid ID number length
+  if (idNumber.length < 13) {
+    return res.status(400).json({ msg: 'ID number must be at least 13 characters long' });
   }
 
   try {
@@ -19,7 +24,7 @@ router.post('/register', async (req, res) => {
     if (user) return res.status(400).json({ msg: 'User already exists' });
 
     // Create new user
-    user = new User({ name, email, password });
+    user = new User({ name, email, password, idNumber, accountNumber });
 
     // Hash the password  
     const salt = await bcrypt.genSalt(10);

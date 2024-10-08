@@ -55,3 +55,19 @@ button:hover {
 p {
   text-align: center;
 }
+
+/* Additional styling for Back to Home button */
+.back-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px; /* Adds space between the form and the back button */
+  width: 100%; /* Full width */
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}
