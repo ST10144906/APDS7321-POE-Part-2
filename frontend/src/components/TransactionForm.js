@@ -40,7 +40,7 @@ const TransactionForm = () => {
 
     if (confirmation) {
       try {
-        const res = await axios.post('https://your-secure-api-domain/api/transactions/add', {
+        const res = await axios.post('http://localhost:5000/api/transactions/add', {
           ...transactionData,
         });
 
