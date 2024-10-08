@@ -1,63 +1,58 @@
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
-  }
-  
-  .dashboard-container {
-    max-width: 800px;
-    width: 100%;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .dashboard-buttons button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1;
-    margin: 0 5px;
-  }
-  
-  .dashboard-buttons button:hover {
-    background-color: #0056b3;
-  }
-  
-  .dashboard-content {
-    margin-top: 20px;
-  }
-  
-  .payment-history {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .payment-history li {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .payment-history li:last-child {
-    border-bottom: none;
-  }
-  
+.dashboard-container {
+  max-width: 1200px; 
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #b7bed3;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.dashboard-content {
+  text-align: center;
+}
+
+.welcome-message {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #1d1d1d;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+}
+
+.card {
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-button {
+  padding: 10px 15px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.dashboard-button:hover {
+  background-color: #0056b3; 
+}

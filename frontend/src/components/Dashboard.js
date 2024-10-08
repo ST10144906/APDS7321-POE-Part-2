@@ -5,7 +5,7 @@ import './Dashboard.css';
 
 const Dashboard = ({ isAdmin }) => {
   const navigate = useNavigate();
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [userInfo, setUserInfo] = useState('');
 
   useEffect(() => {
@@ -19,35 +19,31 @@ const Dashboard = ({ isAdmin }) => {
   };
 
   const handleLogsClick = () => {
-    navigate('/payment-logs');
+    navigate('/employeeportal');
   };
 
   return (
-    <div className="form-container">
-      <h2>Dashboard</h2>
+    <div className="dashboard-container">
+      <h2 className="dashboard-title">Dashboard</h2>
       <div className="dashboard-content">
-        <p>Welcome to the payment portal. Please choose an option below:</p>
-        <div className="form-group">
-          <button onClick={handlePaymentClick}>Make a Payment</button>
-        </div>
-        {isAdmin && (
-          <div className="form-group">
-            <button onClick={handleLogsClick}>Review Payment Logs</button>
+        <p className="welcome-message">Welcome to the Payment Portal</p>
+        <div className="button-container">
+          <div className="card">
+            <h3>Make a Payment</h3>
+            <p>Click the button below to initiate a payment.</p>
+            <button className="dashboard-button" onClick={handlePaymentClick}>
+              Make a Payment
+            </button>
           </div>
-        )}
-        <div className="form-group">
-          <label>User Information:</label>
-          <textarea
-            value={userInfo}
-            readOnly
-            rows="10"
-            style={{
-              width: '100%',
-              padding: '10px',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-            }}
-          />
+          {user?.role === 'admin' && (
+            <div className="card">
+              <h3>Review Payment Logs</h3>
+              <p>Click the button below to view payment logs.</p>
+              <button className="dashboard-button" onClick={handleLogsClick}>
+                Review Payment Logs
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
