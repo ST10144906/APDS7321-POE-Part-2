@@ -1,0 +1,51 @@
+/* TransactionForm.css */
+
+.transaction-form {
+    max-width: 400px; /* Set a max width for the form */
+    margin: 0 auto; /* Center the form */
+    padding: 20px; /* Add some padding */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  h2 {
+    text-align: center; /* Center the header */
+    color: #333; /* Dark gray color for text */
+  }
+  
+  .form-group {
+    margin-bottom: 15px; /* Space between form groups */
+  }
+  
+  label {
+    display: block; /* Block display for labels */
+    margin-bottom: 5px; /* Space below labels */
+    font-weight: bold; /* Make labels bold */
+  }
+  
+  input,
+  select {
+    width: 100%; /* Full width for inputs and selects */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in width */
+  }
+  
+  button {
+    width: 100%; /* Full width for button */
+    padding: 10px; /* Padding inside button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text color */
+    font-size: 16px; /* Font size for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }

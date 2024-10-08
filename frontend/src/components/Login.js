@@ -14,7 +14,7 @@ const Login = () => {
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       alert(res.data.msg);
-      navigate('/'); // Redirect to home after successful login
+      navigate('/dashboard'); // Redirect to home after successful login
     } catch (err) {
       alert('Error: ' + err.response.data.msg);
     }
