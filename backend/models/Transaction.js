@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const transactionSchema = new mongoose.Schema({
-  
+const transactionSchema = new mongoose.Schema({ 
+  accountNumber: { type: String, required: true},
   amount: { type: Number, required: true },
   currency: { type: String, required: true },
   provider: { type: String, required: true, default: 'SWIFT' },

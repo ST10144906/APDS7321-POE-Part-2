@@ -21,6 +21,17 @@ router.post('/add', async (req, res) => {
   }
 });
 
+// GET /api/transactions - Get all transactions
+router.get('/getTransactions', async (req, res) => {
+  try {
+    // Fetch all transactions
+    const transactions = await Transaction.find();
+    res.status(200).json(transactions);
+  } catch (err) {
+    res.status(500).json({ msg: 'Error fetching transactions', error: err.message });
+  }
+});
+
 router.patch('/:id/verify', async (req, res) => {
   try {
     const updatedTransaction = await Transaction.findByIdAndUpdate(req.params.id, { verified: true }, { new: true });

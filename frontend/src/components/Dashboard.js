@@ -1,50 +1,64 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../contexts/UserContext';
+import axios from 'axios';
 import './Dashboard.css';
 
 const Dashboard = ({ isAdmin }) => {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
-  const [userInfo, setUserInfo] = useState('');
+  const [transactions, setTransactions] = useState([]); // State to store transactions
 
   useEffect(() => {
-    if (user) {
-      setUserInfo(JSON.stringify(user, null, 2));
-    }
-  }, [user]);
+    // Fetch all transactions when the component mounts
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/transactions/getTransactions');
+        setTransactions(response.data); // Store transactions in state
+      } catch (err) {
+        console.error('Error fetching transactions:', err);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
 
   const handlePaymentClick = () => {
     navigate('/transactionform');
   };
 
   const handleLogsClick = () => {
-    navigate('/employeeportal');
+    navigate('/payment-logs');
   };
 
   return (
-    <div className="dashboard-container">
-      <h2 className="dashboard-title">Dashboard</h2>
+    <div className="form-container">
+      <h2>Dashboard</h2>
       <div className="dashboard-content">
-        <p className="welcome-message">Welcome to the Payment Portal</p>
-        <div className="button-container">
-          {user?.role === 'customer' && (
-          <div className="card">
-            <h3>Make a Payment</h3>
-            <p>Click the button below to initiate a payment.</p>
-            <button className="dashboard-button" onClick={handlePaymentClick}>
-              Make a Payment
-            </button>
+        <p>Welcome to the payment portal. Please choose an option below:</p>
+        <div className="form-group">
+          <button onClick={handlePaymentClick}>Make a Payment</button>
+        </div>
+        {isAdmin && (
+          <div className="form-group">
+            <button onClick={handleLogsClick}>Review Payment Logs</button>
           </div>
-          )}
-          {user?.role === 'admin' && (
-            <div className="card">
-              <h3>Review Payment Logs</h3>
-              <p>Click the button below to view payment logs.</p>
-              <button className="dashboard-button" onClick={handleLogsClick}>
-                Review Payment Logs
-              </button>
-            </div>
+        )}
+
+        {/* Display Transactions */}
+        <div className="form-group">
+          <h3>All Transactions</h3>
+          {transactions.length > 0 ? (
+            <ul>
+              {transactions.map((transaction, index) => (
+                <li key={index}>
+                  <strong>Amount:</strong> {transaction.amount} {transaction.currency} <br />
+                  <strong>Account Info:</strong> {transaction.accountInfo} <br />
+                  <strong>SWIFT Code:</strong> {transaction.swiftCode} <br />
+                  <strong>Verified:</strong> {transaction.verified ? 'Yes' : 'No'}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No transactions available.</p>
           )}
         </div>
       </div>
