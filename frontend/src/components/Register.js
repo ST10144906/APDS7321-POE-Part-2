@@ -84,13 +84,15 @@ const Register = () => {
             value={formData.accountNumber}
             onChange={e => setFormData({ ...formData, accountNumber: e.target.value })}
             required
+            minLength={9}
+            maxLength={12}
           />
         </div>
         <button type="submit">Register</button>
       </form>
       <p>
         Already have an account?{' '}
-        <button onClick={() => navigate('/login')}>Login here</button>
+        <lable style={{ color: 'blue' }} onClick={() => navigate('/login')}>Login Now</lable>
       </p>
       
       <button className="back-button" onClick={goBackToHome}>Back to Home</button>

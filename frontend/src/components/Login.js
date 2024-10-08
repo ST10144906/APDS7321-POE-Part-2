@@ -24,6 +24,10 @@ const Login = () => {
     }
   };
 
+  const goBackToHome = () => {
+    navigate('/'); // Navigate to home page
+  };
+
   return (
     <div className="form-container" >
       <h2>Login</h2>
@@ -50,8 +54,9 @@ const Login = () => {
       </form>
       <p>
         Don't have an account?{' '}
-        <button onClick={() => navigate('/register')}>Register here</button>
+        <lable style={{ color: 'blue' }} onClick={() => navigate('/register')}>Register Now</lable>
       </p>
+      <button className="back-button" onClick={goBackToHome}>Back to Home</button>
     </div>
   );
 };

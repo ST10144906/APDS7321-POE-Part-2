@@ -47,6 +47,10 @@ const TransactionForm = () => {
     setTransactionData({ ...transactionData, [name]: value });
   };
 
+  const goBackToDash = () => {
+    navigate('/dashboard'); // Navigate to home page
+  };
+
   return (
     <div className="transaction-form">
       <h2>International Payment</h2>
@@ -74,6 +78,7 @@ const TransactionForm = () => {
             value={transactionData.currency}
             onChange={handleInputChange}
             required
+            maxLength={3}
           />
         </div>
 
@@ -101,6 +106,8 @@ const TransactionForm = () => {
             value={transactionData.accountInfo}
             onChange={handleInputChange}
             required
+            minLength={9}
+            maxLength={12}
           />
         </div>
 
@@ -108,18 +115,22 @@ const TransactionForm = () => {
         <div className="form-group">
           <label htmlFor="swiftCode">SWIFT Code:</label>
           <input
-            type="text"
+            type="number"
             id="swiftCode"
             name="swiftCode"
             value={transactionData.swiftCode}
             onChange={handleInputChange}
             required
+            minLength={6}
+            maxLength={6}
           />
         </div>
 
         {/* Submit Button */}
         <button type="submit">Pay Now</button>
       </form>
+
+      <button className="back-button" onClick={goBackToDash}>Back to Dashboard</button>
     </div>
   );
 };
