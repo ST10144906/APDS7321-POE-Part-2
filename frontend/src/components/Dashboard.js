@@ -13,7 +13,7 @@ const Dashboard = () => {
   }, [role]);
 
   const handlePaymentClick = () => {
-    navigate('/payment');
+    navigate('/transactionform');
   };
 
   const handleLogsClick = () => {

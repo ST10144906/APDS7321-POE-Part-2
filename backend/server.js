@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const authRoutes = require('./routes/auth');
+const transactionRoutes = require('./routes/trans');
+
 
 // Initialize Express
 const app = express();
@@ -19,6 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/transactions', transactionRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
