@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
-import https from "https";
-import fs from "fs";
 const rateLimit = require('express-rate-limit');
 const { body, validationResult } = require('express-validator');
 const cookieParser = require('cookie-parser');
@@ -22,12 +20,6 @@ const transactionRoutes = require('./routes/trans');
 
 // Initialize Express
 const app = express();
-
-//SSL keys 
-const options = {
-  key: fs.readFileSync('./keys/privatekey.pem'),
-  cert: fs.readFileSync('./keys/certificate.pem')
-};
 
 // Logging for monitoring
 app.use(morgan('combined'));
