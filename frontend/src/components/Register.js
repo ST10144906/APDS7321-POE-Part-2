@@ -72,8 +72,6 @@ const Register = () => {
             value={formData.idNumber}
             onChange={e => setFormData({ ...formData, idNumber: e.target.value })}
             required
-            minLength={13}
-            maxLength={13}
           />
         </div>
         <div className="form-group">
@@ -84,8 +82,6 @@ const Register = () => {
             value={formData.accountNumber}
             onChange={e => setFormData({ ...formData, accountNumber: e.target.value })}
             required
-            minLength={9}
-            maxLength={12}
           />
         </div>
         <button type="submit">Register</button>

@@ -3,19 +3,34 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const router = express.Router();
 
+// Regular expressions
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+const idNumberRegex = /^\d{13,}$/; // ID must be at least 13 digits, numbers only
+const accountNumberRegex =  /^[0-9]{10}$/; // Account number must be 10 digits, numbers only
+const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/; // At least 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character
 
 // REGISTER a new user
 router.post('/register', async (req, res) => {
   const { name, email, password, idNumber, accountNumber } = req.body;
 
+  // Validate email format
   if (!emailRegex.test(email)) {
     return res.status(400).json({ msg: 'Invalid email format' });
   }
 
-  // Check for valid ID number length
-  if (idNumber.length < 13) {
-    return res.status(400).json({ msg: 'ID number must be at least 13 characters long' });
+  // Validate ID number length and format
+  if (!idNumberRegex.test(idNumber)) {
+    return res.status(400).json({ msg: 'ID number must be at least 13 digits long and contain only numbers' });
+  }
+
+  // Validate account number format
+  if (!accountNumberRegex.test(accountNumber)) {
+    return res.status(400).json({ msg: 'Account number be at least 13 digits long and contain only numbers' });
+  }
+
+  // Validate password complexity
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({ msg: 'Password must be at least 8 characters long, include 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character' });
   }
 
   try {
@@ -41,6 +56,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
+  // Validate email format
   if (!emailRegex.test(email)) {
     return res.status(400).json({ msg: 'Invalid email format' });
   }
