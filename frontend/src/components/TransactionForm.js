@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TransactionForm.css';
 import axios from 'axios';
+import CurrencyDropdown from './CurrencyDropdown'; // Import CurrencyDropdown component
 
 const TransactionForm = () => {
   const navigate = useNavigate();
@@ -60,6 +61,11 @@ const TransactionForm = () => {
     setTransactionData({ ...transactionData, [name]: value });
   };
 
+  // Handler for currency change using the CurrencyDropdown
+  const handleCurrencyChange = (value) => {
+    setTransactionData({ ...transactionData, currency: value });
+  };
+
   const goBackToDash = () => {
     navigate('/dashboard'); // Navigate to home page
   };
@@ -81,17 +87,12 @@ const TransactionForm = () => {
           />
         </div>
 
-        {/* Currency Input */}
+        {/* Currency Dropdown */}
         <div className="form-group">
           <label htmlFor="currency">Currency:</label>
-          <input
-            type="text"
-            id="currency"
-            name="currency"
+          <CurrencyDropdown
             value={transactionData.currency}
-            onChange={handleInputChange}
-            required
-            maxLength={3}
+            onChange={handleCurrencyChange} // Use the new handler
           />
         </div>
 
