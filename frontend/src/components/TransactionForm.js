@@ -4,7 +4,13 @@ import './TransactionForm.css';
 import axios from 'axios';
 
 const TransactionForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  // Regular Expressions for validation
+  const currencyRegex = /^[A-Z]{3}$/; // 3 uppercase letters for currency code
+  const accountInfoRegex = /^\d{9,12}$/; // 9-12 digits for account info
+  const swiftCodeRegex = /^[A-Za-z0-9]{6}$/; // 6 alphanumeric characters for SWIFT code
+
   // State to manage form input
   const [transactionData, setTransactionData] = useState({
     amount: '',
@@ -17,18 +23,25 @@ const TransactionForm = () => {
   // Handler for form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Basic validation
+    if (!currencyRegex.test(transactionData.currency)) {
+      return alert('Invalid currency code. It must be 3 uppercase letters.');
+    }
+    if (!accountInfoRegex.test(transactionData.accountInfo)) {
+      return alert('Account Information must be between 9 and 12 digits.');
+    }
+    if (!swiftCodeRegex.test(transactionData.swiftCode)) {
+      return alert('SWIFT Code must be 6 alphanumeric characters.');
+    }
 
     // Confirmation popup
     const confirmation = window.confirm('Are you sure the details are correct?');
 
     if (confirmation) {
       try {
-        // Assuming the user is logged in and you have the customerId
-        //const customerId = 'hello'; // You should replace this with actual customer ID from login
-
         const res = await axios.post('http://localhost:5000/api/transactions/add', {
-          ...transactionData, // Send customerId along with transaction data
+          ...transactionData,
         });
 
         // Success message
@@ -115,13 +128,12 @@ const TransactionForm = () => {
         <div className="form-group">
           <label htmlFor="swiftCode">SWIFT Code:</label>
           <input
-            type="number"
+            type="text"
             id="swiftCode"
             name="swiftCode"
             value={transactionData.swiftCode}
             onChange={handleInputChange}
             required
-            minLength={6}
             maxLength={6}
           />
         </div>
