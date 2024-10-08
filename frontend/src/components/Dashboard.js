@@ -28,6 +28,7 @@ const Dashboard = ({ isAdmin }) => {
       <div className="dashboard-content">
         <p className="welcome-message">Welcome to the Payment Portal</p>
         <div className="button-container">
+          {user?.role === 'customer' && (
           <div className="card">
             <h3>Make a Payment</h3>
             <p>Click the button below to initiate a payment.</p>
@@ -35,6 +36,7 @@ const Dashboard = ({ isAdmin }) => {
               Make a Payment
             </button>
           </div>
+          )}
           {user?.role === 'admin' && (
             <div className="card">
               <h3>Review Payment Logs</h3>
