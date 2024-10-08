@@ -25,17 +25,17 @@ const TransactionForm = () => {
     if (confirmation) {
       try {
         // Assuming the user is logged in and you have the customerId
-        const customerId = 'hello'; // You should replace this with actual customer ID from login
+        //const customerId = 'hello'; // You should replace this with actual customer ID from login
 
-        const res = await axios.post('http://localhost:5000/api/transactions', {
-          ...transactionData,
-          customerId, // Send customerId along with transaction data
+        const res = await axios.post('http://localhost:5000/api/transactions/add', {
+          ...transactionData, // Send customerId along with transaction data
         });
 
         // Success message
         alert(res.data.msg);
         navigate('/dashboard'); // Redirect user back to the dashboard
       } catch (err) {
+        console.error(err); // Log the full error
         alert('Error: ' + (err.response ? err.response.data.msg : err.message));
       }
     }

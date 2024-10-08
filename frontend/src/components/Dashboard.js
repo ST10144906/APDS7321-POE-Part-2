@@ -15,7 +15,7 @@ const Dashboard = ({ isAdmin }) => {
   }, [user]);
 
   const handlePaymentClick = () => {
-    navigate('/payment');
+    navigate('/transactionform');
   };
 
   const handleLogsClick = () => {

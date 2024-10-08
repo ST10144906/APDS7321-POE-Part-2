@@ -4,7 +4,7 @@ const Transaction = require('../models/Transaction'); // The Transaction model
 const router = express.Router();
 
 // POST /api/transactions to create a new transaction
-router.post('/', async (req, res) => {
+router.post('/add', async (req, res) => {
   try {
     // Create a new transaction with the data from the request body
     const transaction = new Transaction(req.body);
@@ -18,5 +18,6 @@ router.post('/', async (req, res) => {
     res.status(400).json({ msg: 'Error creating transaction', error: err.message });
   }
 });
+
 
 module.exports = router;
