@@ -3,16 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 import './Dashboard.css';
 
-const Dashboard = ({ isAdmin }) => {
+const Dashboard = () => {
   const navigate = useNavigate();
-  const user = useContext(UserContext);
+  const { role } = useContext(UserContext);
   const [userInfo, setUserInfo] = useState('');
 
   useEffect(() => {
-    if (user) {
-      setUserInfo(JSON.stringify(user, null, 2));
-    }
-  }, [user]);
+    setUserInfo(`Role: ${role}`);
+  }, [role]);
 
   const handlePaymentClick = () => {
     navigate('/payment');
@@ -30,7 +28,7 @@ const Dashboard = ({ isAdmin }) => {
         <div className="form-group">
           <button onClick={handlePaymentClick}>Make a Payment</button>
         </div>
-        {isAdmin && (
+        {role === 'admin' && (
           <div className="form-group">
             <button onClick={handleLogsClick}>Review Payment Logs</button>
           </div>

@@ -1,8 +1,7 @@
-// frontend/src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Auth.css'; // Ensure you create a CSS file for styling
+import './Auth.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,8 +12,13 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
-      alert(res.data.msg);
-      navigate('/dashboard'); // Redirect to home after successful login
+      const { userId, role, message } = res.data;
+
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('role', role);
+
+      alert(message);
+      navigate('/dashboard'); 
     } catch (err) {
       alert('Error: ' + err.response.data.msg);
     }

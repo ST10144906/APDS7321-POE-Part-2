@@ -1,9 +1,7 @@
-// routes/transaction.js
 const express = require('express');
-const Transaction = require('../models/Transaction'); // The Transaction model
+const Transaction = require('../models/Transaction');
 const router = express.Router();
 
-// Get pending transactions
 router.get('/pending', async (req, res) => {
   try {
     const transactions = await Transaction.find({ verified: false });
@@ -13,7 +11,6 @@ router.get('/pending', async (req, res) => {
   }
 });
 
-// Submit verified transactions to SWIFT
 router.post('/submit', async (req, res) => {
   try {
     const { transactions } = req.body;
